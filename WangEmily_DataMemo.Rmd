@@ -1,0 +1,51 @@
+---
+title: "Final Project Data Memo"
+author: "Emily Wang"
+date: "5/9/2021"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    highlight: "tango"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r global_options, include=FALSE}
+library(knitr)
+opts_chunk$set(warning = FALSE, message = FALSE, comment = FALSE, dpi = 300)
+```
+
+## **Data Source**
+
+My [dataset](https://conference-board.org/data/economydatabase/total-economy-database-productivity) is from the Total Economy Database™, which was developed by the Groningen Growth and Development Centre at the University of Groningen in the Netherlands. It compiles annual time series data from 131 countries from 1950 to 2021. The dataset measures GDP, population, employment, hours, labor quality, capital services, labor productivity (output per labor hour), and Total Factor Productivity (measures how much output can be produced from a certain amount of labor and capital inputs). The dataset is a combination of the world economy productivity data set, which was created by Dale Jorgenson and Khuong Vu of Harvard University, and the Total Economy Growth Accounting Database, which was created by the Groningen Growth and Development Centre. 
+
+\
+
+## **Proposed Timeline**
+
+1.  **Load data into R** after getting approval after the data memo
+
+2.  **Mid May:** Create basic visualizations
+
+3.  **Mid to late May:** Work on interactive `shiny` interactive dashboard
+
+4.  **Early June:** Go to office hours to fine-tune dashboard
+
+5.  **Before deadline:** Write final memo and add text to dashboard
+
+ 
+
+## **Why this Data**
+
+I chose this data because I am going to start working full-time next year, and I have many criticisms of American working culture. Being Chinese American, I've also heard a lot about the 996 system in China (9am-9pm six days a week) that is the norm at tech companies and becoming more prevalent (even expected) among younger people. I'm also curious to see whether working hours actually connect to 'productivity' (whatever that may mean). I feel very cynical about capitalism and productivity as a whole, so I'm also curious to explore how labor quality factors into the larger picture of hours worked.  
+
+I want to tell a story of what 'work' means for us as humans, not employees. At my internship this summer, people would often joke that I should prioritize liking my coworkers, because I would spend more time with them than my family and friends. I do not want that! I am also mildly horrified at the possibility that I might one day accept that view as normal. Therefore, I am particularly interested in exploring whether working more hours is necessary for labor and factor productivity. Furthermore, I am curious to see what implications labor and factor productivity have for labor quality. Finally, I want to see how productivity and labor quality varies across different countries. \
+
+## **Visualizing the Data**
+
+I want to visualize hours by geographical region and by GDP because I believe these two visualizations may tell two stories: one about the relationship between location and labor, as well as that between relative wealth and labor. I also plan to visualize hours by labor productivity and TFP in order to show how working hours may or may not relate to productivity. In terms of the interactive visualizations, I'd like to be able to build a dashboard where one could select regions or countries, then choose which variables they'd like to visualize. 
+
+## **Potential Data Issues**
+
+Currently, the dataset has my desired variables grouped into one column and the years as separate columns. I will need to figure out how to best pivot the dataset. Furthermore, I will need to group countries together, possibly in regions or OECD status or by GDP, to make it more manageable as 131 countries is a lot to work with. I will also need to make sure that missing values are read in and dealt with correctly, as not all variables were measured from 1950 (as the current dataset is a combination from two other datasets).
