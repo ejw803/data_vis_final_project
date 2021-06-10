@@ -21,7 +21,7 @@ ted_region_dat <- read_csv("data/processed/ted_region_dat.csv") %>%
 ui <- fluidPage(
     
     # App title ----
-    titlePanel("Total Economic Development by Region from 1950 to 2021"),
+    titlePanel("Total Economic Database, by Region from 1950 to 2021"),
     
     # Set up sidebar panel ---
     sidebarLayout(
@@ -51,7 +51,7 @@ ui <- fluidPage(
             
             # radio button widget to select fill variable
             pickerInput(
-                "regions",
+                "region",
                 "Select Regions:",
                 choices = c(
                     "Africa",
@@ -64,33 +64,11 @@ ui <- fluidPage(
                     "Western Europe"
                 ),
                 options = list(`actions-box` = TRUE),
-                multiple = T
+                multiple = T,
+                selected = "North America"
             ),
             
-            # horizontal line,
-            hr(),
-            
-            # slider to set year range
-            sliderInput("range", 
-                        label = "Selected Year Range",
-                        min = 1950, max = 2021, value = c(1950, 2021),
-                        sep = "",
-                        animate = TRUE
-            ),
 
-            br(),
-            br(),
-            
-            # Animated slider bar to select the number of breaks to use on y-axis (dollars)
-            sliderInput(
-                inputId = "y_breaks",
-                label = "Number of Vertical Breaks",
-                min = 3,
-                max = 20,
-                value = 3,
-                animate = TRUE
-            ),
-            
         ),
         
         # Main panel for displaying outputs ----
@@ -105,6 +83,8 @@ ui <- fluidPage(
 
 # Define server -----------------------------------------------------------
 server <- function(input, output) {
+   
+    selected <- reactive(filter(ted_region_dat, region %in% input$region))
     
     # Histogram of CDC data, histogram of weight grouped by gender
     output$line_plot <- renderPlot({
@@ -122,31 +102,12 @@ server <- function(input, output) {
             "output_per_employed_person" = "Output per Employed Person"
         )
         
-        # fill variable
-        # fill_var <- switch(
-        #     input$regions,
-        #     "real_gdp" = "Real GDP",
-        #     "per_capita_income" = "Per Capita Income",
-        #     "employment" = 'Employment',
-        #     "population" = 'Population',
-        #     "total_hours" = 'Total Hours Worked',
-        #     "average_hours_worked" = "Average Hours Worked",
-        #     "output_per_hour_worked" = "Output Per Hour Worked",
-        #     "output_per_employed_person" = "Output per Employed Person"
-        # )
-        
-        # x is chosen through `selectInput` and the inputID is `y_variable`
-        x    <- ted_region_dat %>% pull(input$y_variable)
-        
-        args$min <- as.numeric(input$range[1]) 
-        args$max <- as.numeric(input$range[2]) 
-        
+
         # Plot
-        ggplot(ted_region_dat, aes_string(x = year, y = input$y_variable)) +
+        ggplot(selected(), aes_string(x = "year", y = input$y_variable)) +
             geom_line(
-                aes_string(color = regions),
-                breaks = bin_breaks,
-                color = "black"
+                aes_string(color = "region"),
+                size = 0.75
             ) +
             # theme
             theme_minimal() +
@@ -166,7 +127,7 @@ server <- function(input, output) {
                 x = "Year",
                 y = y_label,
                 # Color label connected to input
-                color = input$regions
+                color = "Regions"
             )
         
         

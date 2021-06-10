@@ -1,0 +1,39 @@
+---
+title: "Final Project"
+subtitle: "Data Visualization (STAT 302)"
+author: "Emily Wang"
+date: "6/9/2021"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    highlight: "tango"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview 
+
+I chose to do my final project on data from the Total Economic Basis because I wanted to explore how work, productivity, and output differed across the world.
+
+I decided to make a Shiny app to visualize different variables for the various regions.
+
+## Data Source 
+
+`ted_region_dat` contains annual time series data from 131 countries and 8 regions from 1950 to 2021. The dataset measures GDP, population, employment, hours, labor quality, capital services, labor productivity (output per labor hour), and Total Factor Productivity (measures how much output can be produced from a certain amount of labor and capital inputs).. The dataset contains data ranging from 2015 to 2020. The size of this dataset is 515.54 KB. The dataset has 15 columns or variables, as well as 4,895 observations. The link to the dataset is here:
+
+[https://conference-board.org/data/economydatabase/total-economy-database-productivity)](https://conference-board.org/data/economydatabase/total-economy-database-productivity))
+
+## **Visualization "Plot" Tab**
+
+This visualization is an interactive line chart displaying how regional economies have changed between 1950-2021.
+
+The line chart shows a variety of variables tracing economic growth, population, and labor for eight different regions across the world. Based on what the variable the user picks, the graphic can show real GDP or total hours worked. In order to cut down on the total of 131 countries, I chose to show the data by region rather than by country.
+
+Users can choose one region, multiple regions, or all regions. In this sense, the user can see the data one at a time or compare against specific regions, like Asia and North America. Selecting different variables and a different combination of regions allows the user to compare against a spectrum of standards to see how regions have been changing over time.
+
+This visualization aims to show the linkage between economic growth and labor -- it is not always a linear relationship. For example, we can see that North America has consistently had a very high GDP and per capita income but it also has one of the lowest average hours worked per person. In this sense, the visualization shows the high salary across North America. Furthermore, we see a drastic dip in average hours work across all regions in 2020, most likely due to COVID-19 and the adjustment to working from home. At the same time, working from home makes it harder to delineate the boundary between 'work' and 'life', so it may have been harder to track the hours.
+
+There are many more possible observations a user can glean from the visualization, based on a different combination of regions and variables.

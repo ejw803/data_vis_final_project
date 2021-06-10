@@ -1,12 +1,11 @@
 # Load Packages  -----------------------------------------------------------
 
 library(tidyverse)
-library(patchwork)
 
 
 # DATA CHECK --------------------------------------------------------------
 # LOAD DATA----
-ted <- read_csv("data/unprocessed/ted_data.csv") %>% 
+ted <- read_csv("ted_app/data/unprocessed/ted_data.csv") %>% 
   # standardized naming convention
   janitor::clean_names() %>% 
   # mutate character variables to factor
@@ -61,7 +60,7 @@ ted_region_dat <- ted %>%
   summarise_each(funs(mean(., na.rm = TRUE))) %>% 
   ungroup()
 
-write_csv(ted_region_dat, "data/processed/ted_region_dat.csv")
+write_csv(ted_region_dat, "ted_app/data/processed/ted_region_dat.csv")
 
 # Testing visualizations --------------------------------------------------
 
